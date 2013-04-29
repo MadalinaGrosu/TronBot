@@ -87,6 +87,7 @@ public class Solution {
 	 * Functia de evaluare pentru negamax
 	 * @param tabla - harta
 	 * @param player - pozitia jucatorului curent
+	 * @param opponent - pozitia adversarului
 	 * @param p - indicator pentru player-ul nostru sau adversar; 0 - player-ul nostru,  1 - adversar
 	 * @return suma vecinilor
 	 */
@@ -116,16 +117,17 @@ public class Solution {
 	 * @return cea mai buna mutare pentru pasul curent
 	 */
 	public int negaMax(int depth, int[][] tabla, Position my_player, Position opponent, int[] move, int p) {
-		
+
 		int maxscore = -999;
 		int  i;
 		Position current_pl = (p == 0 ? my_player : opponent);
-		
+		Position other_pl = (p == 1 ? opponent : my_player);
+
 		if (depth == 0 )
-			return evaluate(tabla, current_pl, p);
-		
+			return evaluate(tabla, current_pl, other_pl, p);
+
 		for (i = 0; i < current_pl.mutariPosibile(tabla).size(); i++) {
-			
+
 			int d = current_pl.mutariPosibile(tabla).get(i);
 			if (d == 1) {
 				tabla[current_pl.x - 1][current_pl.y] = 0;
@@ -143,19 +145,19 @@ public class Solution {
 				tabla[current_pl.x][current_pl.y - 1] = 0;
 				current_pl.y--;
 			}
-			
+
 			int score;
 			if (current_pl.equals(my_player))
 				score = -negaMax(depth - 1, tabla, current_pl, opponent, move, 1 - p);
 			else
 				score = -negaMax(depth - 1, tabla, my_player, current_pl, move, 1 - p);
-			
-			if (score > maxscore) {
+
+			if (score >= maxscore) {
 				maxscore = score;
 				if (depth == 15) 
 					move[0] = d;
 			}
-			
+
 			if (d == 1) {
 				current_pl.x++;
 				tabla[current_pl.x - 1][current_pl.y] = 1;
@@ -173,7 +175,7 @@ public class Solution {
 				tabla[current_pl.x][current_pl.y - 1] = 1;
 			}
 		}
-			
+
 		return maxscore;
 	}
 	
