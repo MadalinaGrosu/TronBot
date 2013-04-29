@@ -1,7 +1,7 @@
 /**
  * Proiect PA 2013
  * Echipa Nabucodonosor
- * @version 1.0
+ * @version 2.0
  */
 import java.util.Scanner;
 import java.util.ArrayList;
