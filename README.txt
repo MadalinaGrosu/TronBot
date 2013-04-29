@@ -26,3 +26,8 @@ Fisierul sursa contine doua clase:
 		-> negamax : implementeaza algoritmul neagamax; intoarce cea mai buna mutare pentru pasul curent
 		-> move : realizeaza cea mai buna mutare
 	Referinte: https://project.dke.maastrichtuniversity.nl/games/files/bsc/Kang_Bsc-paper.pdf
+Etapa 2 
+	Solutia trimisa pentru aceasta etapa -
+	https://www.hackerrank.com/contests/bucharest-tron/submissions/game/628441
+	In aceasta etapa am modificat putin functia de evaluare a starii jocului. Acum analizam toate cele 8 casute adiacente cu pozitia curenta si mai adaugam si distanta dintre player si adversar. 
+	Meciul cu stage2bot: https://www.hackerrank.com/showgame/2212294
