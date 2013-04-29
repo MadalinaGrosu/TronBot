@@ -90,15 +90,19 @@ public class Solution {
 	 * @param p - indicator pentru player-ul nostru sau adversar; 0 - player-ul nostru,  1 - adversar
 	 * @return suma vecinilor
 	 */
-	public int evaluate(int[][] tabla, Position player, int p) {
+	public int evaluate(int[][] tabla, Position player, Position opponent, int p) {
 		
 		int x = player.x;
 		int y = player.y;
 		
 		if (p == 0)
-			return -(tabla[x - 1][y] + tabla[x][y + 1] + tabla[x + 1][y] + tabla[x][y - 1]);
+			return -(tabla[x - 1][y] + tabla[x][y + 1] + tabla[x + 1][y] + tabla[x][y - 1] + 
+					tabla [x - 1][y - 1] + tabla[x - 1][y + 1] + tabla[x + 1][y - 1] + tabla[x + 1][y + 1] -
+					Math.abs(player.x - opponent.x) - Math.abs(player.y - opponent.y) + 1);
 		else
-			return tabla[x - 1][y] + tabla[x][y + 1] + tabla[x + 1][y] + tabla[x][y - 1];
+			return tabla[x - 1][y] + tabla[x][y + 1] + tabla[x + 1][y] + tabla[x][y - 1] +
+					tabla [x - 1][y - 1] + tabla[x - 1][y + 1] + tabla[x + 1][y - 1] + tabla[x + 1][y + 1] -
+					Math.abs(player.x - opponent.x) - Math.abs(player.y - opponent.y) + 1;
 	}
 	
 	/**
